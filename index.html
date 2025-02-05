@@ -108,16 +108,29 @@
             }
 
             /* Add to existing CSS */
+
 .nav-links a {
-    color: white; /* Change the text color to white */
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+            
+/*.nav-links a {
+    color: white; /* Change the text color to white 
     padding: 1rem;
     border-radius: 5px;
-    margin-right: 10px; /* Add this line to create spacing between items */
+    margin-right: 10px; /* Add this line to create spacing between items 
 }
 
 .nav-links a:last-child {
-    margin-right: 0; /* Remove the margin from the last item */
-}
+    margin-right: 0; /* Remove the margin from the last item 
+}*/
         
             .nav-links a:hover {
                 background-color: var(--primary-color);
