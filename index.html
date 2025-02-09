@@ -158,41 +158,7 @@
             max-width: 600px;
         }
 
-        /* Typing Animation */
-.typing-text {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--accent-color); /* Cursor effect */
-    animation: typing 2s steps(20, end), blink-caret 0.75s step-end infinite;
-}
 
-.typing-name {
-    display: inline-block;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 2px solid var(--accent-color); /* Cursor effect */
-    animation: typing 2s steps(20, end) 2s, blink-caret 0.75s step-end infinite;
-    animation-fill-mode: both;
-}
-
-@keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-@keyframes blink-caret {
-    from, to {
-        border-color: transparent;
-    }
-    50% {
-        border-color: var(--accent-color);
-    }
-}
 
         .cta-btn {
             background-color: var(--accent-color);
@@ -457,11 +423,7 @@
         </div>
         <div class="container hero-content">
             <div class="hero-text">
-                <!--<h1>Hi, I'm <span>Basit Iqbal Bitto</span></h1>-->
-                <h1>
-                    <span class="typing-text">Hi, I'm </span>
-                    <span class="typing-name">Basit Iqbal Bitto</span>
-                </h1>
+                <h1>Hi, I'm <span>Basit Iqbal Bitto</span></h1>
                 <p>Web Developer | AI Enthusiast | Tech Explorer</p>
                 <a href="https://bitto29.github.io/cv1"><button class="cta-btn">View my CV</button></a>
             </div>
@@ -618,18 +580,6 @@
             shape.style.animation = `float ${20 + index * 2}s infinite`;
         });
 
-        //typing animation 
-        const typingText = document.querySelector('.typing-text');
-        const typingName = document.querySelector('.typing-name');
-
-        const startTypingAnimation = () => {
-        typingText.style.animation = 'typing 2s steps(20, end), blink-caret 0.75s step-end infinite';
-        typingName.style.animation = 'typing 2s steps(20, end) 2s, blink-caret 0.75s step-end infinite';
-        typingName.style.animationFillMode = 'both';
-        };
-
-        // Start the animation when the page loads
-        window.onload = startTypingAnimation;
 
         // Mobile Menu Toggle
         const hamburger = document.querySelector('.hamburger');
