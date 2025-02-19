@@ -145,7 +145,7 @@
       transition: transform 0.3s;
     }
     .cta-btn:hover {
-      transform: translateY(-3px) scale(1.05) !important;
+      transform: translateY(-3px);
     }
     .profile-picture {
       width: 300px;
@@ -223,7 +223,13 @@
       transition: transform 0.3s;
     }
     .skill-card:hover {
-      transform: translateY(-10px) !important;
+      transform: translateY(-10px);
+    }
+    /* Added CSS for Skill Card Icons */
+    .skill-card i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
     }
     /* Projects Section */
     .projects {
@@ -330,10 +336,6 @@
     #oi {
       color: white;
       margin-right: 2rem;
-      transition: color 0.3s;
-    }
-    #oi :hover{
-        color: var(--accent-color);
     }
     #learn {
       color: black;
