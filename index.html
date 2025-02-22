@@ -327,6 +327,35 @@
     .social-links a:hover {
       color: var(--accent-color);
     }
+    /* Tooltip styling (optional) */
+.social-links a[title] {
+  position: relative;
+}
+
+.social-links a[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 125%; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.social-links a[title]:hover::before {
+  content: "";
+  position: absolute;
+  bottom: 115%; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--secondary-color) transparent transparent transparent;
+      }
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -521,14 +550,14 @@
 
   <!-- Footer -->
   <footer>
-    <div class="social-links">
-      <a href="https://www.facebook.com/bitto29"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.facebook.com/aibro29"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://github.com/Bitto29"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/basit-iqbal-bitto-60bb8626b"><i class="fab fa-linkedin"></i></a>
-      <a href="https://discord.gg/xzFQgKWF44"><i class="fa-brands fa-discord"></i></a>
-    </div>
-    <p>&copy; 2025 Basit Iqbal Bitto. All rights reserved.</p>
+  <div class="social-links">
+    <a href="https://www.facebook.com/bitto29" title="Basit Iqbal Bitto"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://www.facebook.com/aibro29" title="Ai Bro"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://github.com/Bitto29" title="Bitto29"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/basit-iqbal-bitto-60bb8626b" title="Basit Iqbal Bitto"><i class="fab fa-linkedin"></i></a>
+    <a href="https://discord.gg/xzFQgKWF44" title="Bitto29"><i class="fa-brands fa-discord"></i></a>
+  </div>
+  <p>&copy; 2025 Basit Iqbal Bitto. All rights reserved.</p>
   </footer>
 
   <!-- Your Existing Scripts -->
