@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -29,7 +30,8 @@
   <link rel="icon" href="blogo.png" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-
+ <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
 
     * {
@@ -1526,6 +1528,33 @@
 
     }
 
+     /* Status message styles (no popup, inline) */
+    .form-status {
+      margin-top: 1.2rem;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .form-status.success {
+      background-color: var(--success-bg);
+      border-left: 4px solid var(--accent-color);
+      color: #ccffdd;
+    }
+    .form-status.error {
+      background-color: var(--error-bg);
+      border-left: 4px solid #ff6b6b;
+      color: #ffcdcd;
+    }
+    .form-status.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s;
+    }
+
   </style>
 
 </head>
@@ -1869,45 +1898,24 @@
   <!-- Contact Section -->
 
   <section id="contact" class="contact">
-
     <div class="container">
-
       <h2 data-aos="fade-up">Get In Touch</h2>
-
-      <form onsubmit="submitForm(); return false;" data-aos="fade-up">
-
+      <form id="contact-form" data-aos="fade-up">
         <div class="form-group">
-
-          <input type="text" id="name" placeholder="Your Name" required />
-
+          <input type="text" name="from_name" id="name" placeholder="Your Name" required />
         </div>
-
         <div class="form-group">
-
-          <input type="email" id="email" placeholder="Your Email" required />
-
+          <input type="email" name="from_email" id="email" placeholder="Your Email" required />
         </div>
-
         <div class="form-group">
-
-          <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
-
+          <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
         </div>
-
-        <!-- Wrap the button to isolate AOS from the hover effect -->
-
-        <div data-aos="zoom-in">
-
-          <button type="submit" class="cta-btn">Send Message</button>
-
-        </div>
-
+        <button type="submit" id="submit-btn" class="cta-btn">Send Message</button>
+        <!-- Inline status area (no popup/alerts) -->
+        <div id="form-status" class="form-status" style="display: none;"></div>
       </form>
-
     </div>
-
   </section>
-
 
 
   <!-- Footer -->
@@ -1935,7 +1943,111 @@
     <p>&copy; 2026 Basit Iqbal Bitto. All rights reserved.</p>
 
   </footer>
+  
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({ duration: 1000, once: true });
 
+    // ---------- EMAILJS CONFIG ----------
+    (function() {
+      emailjs.init("aWznEn01tnTepuxsA");
+    })();
+
+   // ... (AOS init and EmailJS config remain the same)
+
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const statusDiv = document.getElementById('form-status');
+
+let statusTimeout = null;
+let sentTimeout = null; // NEW: timeout for "Sent" button state
+
+function showStatusMessage(message, type = 'success') {
+  if (statusTimeout) clearTimeout(statusTimeout);
+  statusDiv.classList.remove('fade-out');
+  statusDiv.style.display = 'block';
+  statusDiv.textContent = message;
+  statusDiv.className = `form-status ${type}`;
+  
+  statusTimeout = setTimeout(() => {
+    statusDiv.classList.add('fade-out');
+    setTimeout(() => {
+      if (statusDiv.classList.contains('fade-out')) {
+        statusDiv.style.display = 'none';
+        statusDiv.classList.remove('fade-out');
+      }
+    }, 400);
+  }, 3800);
+}
+
+function resetButtonToDefault() {
+  if (sentTimeout) {
+    clearTimeout(sentTimeout);
+    sentTimeout = null;
+  }
+  submitBtn.textContent = "Send Message";
+  submitBtn.disabled = false;
+}
+
+contactForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  // Clear any pending timeouts
+  if (statusTimeout) clearTimeout(statusTimeout);
+  if (sentTimeout) {
+    clearTimeout(sentTimeout);
+    sentTimeout = null;
+  }
+  statusDiv.style.display = 'none';
+  statusDiv.classList.remove('fade-out');
+  
+  submitBtn.textContent = "Sending...";
+  submitBtn.disabled = true;
+  
+  const nameValue = document.querySelector('input[name="from_name"]').value.trim();
+  const emailValue = document.querySelector('input[name="from_email"]').value.trim();
+  const messageValue = document.querySelector('textarea[name="message"]').value.trim();
+  
+  if (!nameValue || !emailValue || !messageValue) {
+    showStatusMessage("❌ Please fill in all fields before sending.", "error");
+    resetButtonToDefault();
+    return;
+  }
+  
+  if (!emailValue.includes('@') || !emailValue.includes('.')) {
+    showStatusMessage("📧 Please enter a valid email address.", "error");
+    resetButtonToDefault();
+    return;
+  }
+  
+  const serviceID = 'service_hn230tk';
+  const templateID = 'template_2j2xutl';
+  
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      // showStatusMessage("✓ Message sent successfully! I'll get back to you soon.", "success");
+      contactForm.reset();
+      
+      // Set button to "Sent" and keep disabled
+      submitBtn.textContent = "Sent";
+      submitBtn.disabled = true;
+      
+      // After 3 seconds, revert to default
+      sentTimeout = setTimeout(() => {
+        resetButtonToDefault();
+      }, 3000);
+    })
+    .catch((err) => {
+      console.error("EmailJS Error Details:", err);
+      let errorMsg = "⚠️ Failed to send message. ";
+      if (err.text) errorMsg += err.text;
+      else if (err.message) errorMsg += err.message;
+      else errorMsg += "Please check your connection or try again later.";
+      showStatusMessage(errorMsg, "error");
+      resetButtonToDefault();
+    });
+});</script>
 
 
   <!-- Your Existing Scripts -->
@@ -2005,32 +2117,6 @@
       });
 
     });
-
-    // Contact Form
-
-    function submitForm() {
-
-      var name = document.getElementById("name").value;
-
-      var email = document.getElementById("email").value;
-
-      var message = document.getElementById("message").value;
-
-      var mailtoLink =
-
-        "mailto:info.bitto29@gmail.com" +
-
-        "?subject=" +
-
-        encodeURIComponent("Message from " + name) +
-
-        "&body=" +
-
-        encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\nMessage: " + message);
-
-      window.location.href = mailtoLink;
-
-    }
 
     // ===== ENHANCED BRANCH ANIMATION =====
 
