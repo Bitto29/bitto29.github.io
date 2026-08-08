@@ -1004,7 +1004,7 @@
 
       width: 0;
 
-      transform: rotate(30deg);
+      transform: rotate(0deg);
 
     }
 
@@ -1018,123 +1018,578 @@
 
       width: 0;
 
-      transform: rotate(0deg);
+      transform: rotate(30deg);
 
     }
 
 
 
-    /* Platform box styling */
+    /* Animate branches when shown */
+
+    .hire-platforms.show~.hire-me-container .branch-line:nth-child(1) {
+
+      width: 40%;
+
+      transition: width 0.6s ease 0.1s;
+
+    }
+
+
+
+    .hire-platforms.show~.hire-me-container .branch-line:nth-child(2) {
+
+      width: 30%;
+
+      transition: width 0.6s ease 0.2s;
+
+    }
+
+
+
+    .hire-platforms.show~.hire-me-container .branch-line:nth-child(3) {
+
+      width: 40%;
+
+      transition: width 0.6s ease 0.3s;
+
+    }
+
+
+
+    /* ===== EXISTING STYLES - UPDATED ===== */
+
+    /* Container for all button elements */
+
+    .hero-buttons-container {
+
+      display: flex;
+
+      flex-direction: column;
+
+      width: 100%;
+
+      margin-bottom: 10px;
+
+      position: relative;
+
+    }
+
+
+
+    /* Container for primary buttons */
+
+    .main-buttons {
+
+      display: flex;
+
+      gap: 15px;
+
+      flex-wrap: wrap;
+
+    }
+
+
+
+    .hire-me-container {
+
+      position: relative;
+
+    }
+
+
+
+    /* Platform buttons container */
 
     .hire-platforms {
 
       display: flex;
 
-      gap: 1rem;
+      gap: 15px;
 
-      justify-content: center;
+      max-height: 0;
 
-      flex-wrap: wrap;
+      overflow: hidden;
 
-      margin-top: 2rem;
+      transition: max-height 0.5s ease, opacity 0.3s ease;
 
       opacity: 0;
 
-      transition: opacity 0.3s ease;
+      width: 100%;
 
-      pointer-events: none;
+      margin-top: 15px;
+
+      flex-wrap: wrap;
+
+      position: relative;
+
+      z-index: 2;
 
     }
 
 
+
+    /* Show state for platform container */
 
     .hire-platforms.show {
 
-      opacity: 1;
+      max-height: 500px;
 
-      pointer-events: auto;
+      opacity: 1;
 
     }
 
 
 
-    .platform {
+    /* Individual platform button styles */
+
+    .platform-btn {
+
+      flex: 1;
+
+      opacity: 0;
+
+      transform: translateY(20px) scale(0.95);
+
+      background-color: var(--secondary-color);
+
+      color: var(--text-color);
+
+      padding: 12px 20px;
+
+      border-radius: 5px;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+      transition: all 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      min-width: 120px;
+
+      border: 1px solid rgba(255, 255, 255, 0.1);
+
+      position: relative;
+
+    }
+
+
+
+    .platform-btn:hover {
+
+      transform: translateY(-3px);
 
       background-color: var(--accent-color);
 
       color: var(--primary-color);
 
-      padding: 0.8rem 1.5rem;
-
-      border-radius: 5px;
-
-      font-weight: bold;
-
-      text-decoration: none;
-
-      transition: all 0.3s ease;
-
-      display: inline-block;
+      box-shadow: 0 5px 15px rgba(0, 255, 136, 0.4);
 
     }
 
 
 
-    .platform:hover {
+    .hire-platforms.show .platform-btn {
 
-      transform: translateY(-3px);
+      opacity: 1;
 
-      box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+      transform: translateY(0) scale(1);
 
     }
 
 
 
-    /* Animated button effect */
+    /* Staggered animation delays */
 
-    .hire-me-btn.active {
+    .hire-platforms.show .platform-btn:nth-child(1) {
 
-      background-color: rgba(0, 255, 136, 0.2) !important;
+      transition-delay: 0.4s;
 
+    }
+
+
+
+    .hire-platforms.show .platform-btn:nth-child(2) {
+
+      transition-delay: 0.5s;
+
+    }
+
+
+
+    .hire-platforms.show .platform-btn:nth-child(3) {
+
+      transition-delay: 0.6s;
+
+    }
+
+
+
+    /* ===== MOBILE-OPTIMIZED STYLES ===== */
+
+    @media (max-width: 768px) {
+
+
+
+      /* Hero section adjustments */
+
+      .hero-content {
+
+        flex-direction: column;
+
+        padding: 60px 0 30px;
+
+      }
+
+
+
+      .hero-text {
+
+        order: 1;
+
+        width: 100%;
+
+        text-align: center;
+
+      }
+
+
+
+      .profile-picture {
+
+        order: 2;
+
+        margin: 30px auto 0;
+
+      }
+
+
+
+      /* Button container adjustments */
+
+      .hero-buttons-container {
+
+        width: 100%;
+
+        max-width: 100%;
+
+      }
+
+
+
+      /* Main buttons styling */
+
+      .main-buttons {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        width: 100%;
+
+      }
+
+
+
+      .main-buttons>div {
+
+        width: 100%;
+
+      }
+
+
+
+      .cta-btn {
+
+        width: 85%;
+
+        padding: 12px;
+
+        font-size: 1rem;
+
+      }
+
+
+
+      /* Platform buttons styling */
+
+      .hire-platforms {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        margin-top: 10px;
+
+      }
+
+
+
+      .platform-btn {
+
+        width: 100%;
+
+        min-width: auto;
+
+        padding: 12px;
+
+        font-size: 0.95rem;
+
+      }
+
+
+
+      /* Hero text adjustments */
+
+      .hero h1 {
+
+        font-size: 2.2rem;
+
+        line-height: 1.2;
+
+      }
+
+
+
+      .hero p {
+
+        font-size: 1.1rem;
+
+      }
+
+
+
+      /* Branch lines for mobile */
+
+      .branch-lines {
+
+        width: 100%;
+
+        height: 150px;
+
+        top: 100%;
+
+        left: 50%;
+
+      }
+
+
+
+      .branch-line {
+
+        height: 2px;
+
+        background: var(--accent-color);
+
+      }
+
+
+
+      .branch-line:nth-child(1) {
+
+        top: 0;
+
+        left: 50%;
+
+        transform: rotate(-20deg) translateY(20px);
+
+      }
+
+
+
+      .branch-line:nth-child(2) {
+
+        top: 50px;
+
+        left: 50%;
+
+        transform: rotate(0deg) translateY(20px);
+
+      }
+
+
+
+      .branch-line:nth-child(3) {
+
+        top: 100px;
+
+        left: 50%;
+
+        transform: rotate(20deg) translateY(20px);
+
+      }
+
+
+
+      .hire-platforms.show~.hire-me-container .branch-line:nth-child(1) {
+
+        width: 35%;
+
+        transform: rotate(-20deg);
+
+      }
+
+
+
+      .hire-platforms.show~.hire-me-container .branch-line:nth-child(2) {
+
+        width: 30%;
+
+        transform: rotate(0deg);
+
+      }
+
+
+
+      .hire-platforms.show~.hire-me-container .branch-line:nth-child(3) {
+
+        width: 35%;
+
+        transform: rotate(20deg);
+
+      }
+
+    }
+
+
+
+    /* Desktop-specific styling */
+
+    @media (min-width: 769px) {
+
+      .hire-platforms {
+
+        justify-content: center;
+
+      }
+
+
+
+      .platform-btn {
+
+        max-width: 150px;
+
+      }
+
+
+
+      /* Adjust button spacing */
+
+      .hero-buttons-container {
+
+        margin-bottom: 20px;
+
+      }
+
+
+
+      /* Branch connection adjustments */
+
+      .branch-lines {
+
+        height: 70px;
+
+      }
+
+
+
+      .hire-platforms.show~.hire-me-container .branch-line:nth-child(1) {
+
+        width: 45%;
+
+      }
+
+
+
+      .hire-platforms.show~.hire-me-container .branch-line:nth-child(2) {
+
+        width: 35%;
+
+      }
+
+
+
+      .hire-platforms.show~.hire-me-container .branch-line:nth-child(3) {
+
+        width: 45%;
+
+      }
+
+    }
+
+     /* Status message styles (no popup, inline) */
+    .form-status {
+      margin-top: 1.2rem;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .form-status.success {
+      background-color: var(--success-bg);
+      border-left: 4px solid var(--accent-color);
+      color: #ccffdd;
+    }
+    .form-status.error {
+      background-color: var(--error-bg);
+      border-left: 4px solid #ff6b6b;
+      color: #ffcdcd;
+    }
+    .form-status.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s;
     }
 
   </style>
 
 </head>
 
+
+
 <body>
 
   <!-- Navigation -->
 
-  <nav>
+  <nav data-aos="fade-down">
 
-    <div class="container">
+    <div class="container nav-content">
 
-      <div class="nav-content">
+      <div class="logo">
 
-        <div class="logo">
+        <img src="blogo.png" alt="Basit Iqbal Bitto Logo" />
 
-          <img src="blogo.png" alt="Basit Iqbal Bitto Logo" />
+      </div>
 
-        </div>
+      <!-- Hamburger Menu for Mobile -->
 
-        <div class="nav-links" id="nav-links">
+      <button class="hamburger">
 
-          <a href="#home">Home</a>
+        <i class="fas fa-bars"></i>
 
-          <a href="#skills">Skills</a>
+      </button>
 
-          <a href="#projects">Projects</a>
+      <div class="nav-links">
 
-          <a href="#contact">Contact</a>
+        <a id="oi" href="#home">Home</a>
 
-        </div>
+        <a id="oi" href="#skills">Skills</a>
 
-        <button class="hamburger" id="hamburger">
+        <a id="oi" href="#projects">Projects</a>
 
-          <i class="fas fa-bars"></i>
-
-        </button>
+        <a id="oi" href="#contact">Contact</a>
 
       </div>
 
@@ -1142,75 +1597,91 @@
 
   </nav>
 
+
+
   <!-- Hero Section -->
 
   <section id="home" class="hero">
 
     <div class="floating-shapes">
 
-      <div></div>
+      <div style="top: 20%; left: 10%"></div>
 
-      <div></div>
+      <div style="top: 50%; left: 80%"></div>
 
-      <div></div>
+      <div style="top: 70%; left: 30%"></div>
 
     </div>
 
-    <div class="container">
+    <div class="container hero-content">
 
-      <div class="hero-content">
+      <div class="hero-text" data-aos="fade-right">
 
-        <div>
+        <h1>Hi, I'm <span>Basit Iqbal Bitto</span></h1>
 
-          <h1>
+        <p data-aos="fade-up">Web Developer | AI Enthusiast | Tech Explorer</p>
 
-            Hey, I'm <span>Bitto</span>
+        <!-- Wrap button with AOS so hover works on the button -->
 
-          </h1>
+        <!-- Replace your existing View CV button with this structure -->
 
-          <p>
+        <div class="hero-buttons-container">
 
-            A passionate web developer and UI/UX designer crafting beautiful and
+          <div class="main-buttons">
 
-            functional digital experiences. Let's build something amazing together!
+            <div data-aos="zoom-in">
 
-          </p>
+              <a href="https://bitto29.github.io/cv1">
 
-          <button id="hire-me-btn" class="cta-btn hire-me-btn">Hire Me</button>
+                <button class="cta-btn">View my CV & Certificates</button>
 
-          <div class="hire-platforms" id="hire-platforms">
+              </a>
 
-            <a href="mailto:bitto@example.com" class="platform">Email</a>
+            </div>
 
-            <a href="https://wa.me/bitto29" class="platform">WhatsApp</a>
+            <div data-aos="zoom-in">
+              <a href="https://www.supportkori.com/bitto29" target="_blank">
+                <button class="cta-btn support-btn">
+                  <i class="fas fa-heart"></i> Contribute
+                </button>
+              </a>
+            </div>
 
-            <a href="https://www.fiverr.com/bitto29" class="platform">Fiverr</a>
+            <div data-aos="zoom-in" class="hire-me-container">
+
+              <button id="hireMeBtn" class="cta-btn hire-me-btn">Hire Me</button>
+
+              <div class="branch-lines"></div>
+
+            </div>
 
           </div>
 
-          <svg class="branch-lines" viewBox="0 0 400 100">
+          <div class="hire-platforms">
 
-            <line class="branch-line" x1="200" y1="0" x2="150" y2="80"></line>
+            <a href="https://www.upwork.com/freelancers/~01b2d637e4da36beff?mp_source=share" class="platform-btn" target="_blank">Upwork</a>
 
-            <line class="branch-line" x1="200" y1="0" x2="200" y2="80"></line>
+            <a href="https://www.freelancer.com/u/bitto25" class="platform-btn" target="_blank">Freelancer</a>
 
-            <line class="branch-line" x1="200" y1="0" x2="250" y2="80"></line>
+            <a href="https://www.fiverr.com/bitto_29" class="platform-btn" target="_blank">Fiverr</a>
 
-          </svg>
-
-        </div>
-
-        <div class="profile-picture">
-
-          <img src="profile.jpg" alt="Basit Iqbal Bitto" />
+          </div>
 
         </div>
+
+      </div>
+
+      <div class="profile-picture" data-aos="fade-left">
+
+        <img src="profile pic.jpg" alt="Basit Iqbal Bitto" />
 
       </div>
 
     </div>
 
   </section>
+
+
 
   <!-- Skills Section -->
 
@@ -1222,51 +1693,59 @@
 
       <div class="skills-grid">
 
-        <div class="skill-card" data-aos="fade-up">
+        <div data-aos="fade-up">
 
-          <i class="fab fa-html5"></i>
+          <div class="skill-card">
 
-          <h3>HTML</h3>
+            <i class="fas fa-code"></i>
 
-        </div>
+            <h3>Web Development</h3>
 
-        <div class="skill-card" data-aos="fade-up">
+            <p>Full-stack development with modern technologies</p>
 
-          <i class="fab fa-css3-alt"></i>
-
-          <h3>CSS</h3>
+          </div>
 
         </div>
 
-        <div class="skill-card" data-aos="fade-up">
+        <div data-aos="fade-right">
 
-          <i class="fab fa-js-square"></i>
+          <div class="skill-card">
 
-          <h3>JavaScript</h3>
+            <i class="fas fa-robot"></i>
 
-        </div>
+            <h3>AI & ML</h3>
 
-        <div class="skill-card" data-aos="fade-up">
+            <p>Building intelligent solutions with AI</p>
 
-          <i class="fab fa-react"></i>
-
-          <h3>React</h3>
+          </div>
 
         </div>
 
-        <div class="skill-card" data-aos="fade-up">
+        <div data-aos="fade-left">
 
-          <i class="fab fa-node-js"></i>
+          <div class="skill-card">
 
-          <h3>Node.js</h3>
+            <i class="fas fa-pencil-ruler"></i>
+
+            <h3>Graphic Design</h3>
+
+            <p>Creating visually stunning designs and branding solutions</p>
+
+          </div>
 
         </div>
 
-        <div class="skill-card" data-aos="fade-up">
+        <div data-aos="fade-up">
 
-          <i class="fas fa-database"></i>
+          <div class="skill-card">
 
-          <h3>Databases</h3>
+            <i class="fas fa-video"></i>
+
+            <h3>Video Editing</h3>
+
+            <p>Creating professional and engaging video content</p>
+
+          </div>
 
         </div>
 
@@ -1275,6 +1754,8 @@
     </div>
 
   </section>
+
+
 
   <!-- Projects Section -->
 
@@ -1282,47 +1763,33 @@
 
     <div class="container">
 
-      <h2 data-aos="fade-up">My Projects</h2>
+      <h2 data-aos="fade-up">Recent Projects</h2>
+
+      <p data-aos="fade-up">
+
+        <a href="https://bitto29.github.io/projects-website/" class="view-all-projects">Click here</a> to see all the projects in a single place.
+
+      </p>
 
       <div class="projects-grid">
 
-        <div class="project-card" data-aos="fade-up">
+        <div data-aos="flip-left">
+          
+          <div class="project-card">
 
-          <img src="project1.jpg" alt="Project 1" />
+            <img src="https://i.postimg.cc/CKz7NBHV/image.png" alt="Project 4" />
 
-          <div class="project-info">
+            <div class="project-info">
 
-            <h3>Project 1</h3>
+              <h3>Demo Cafe Website</h3>
 
-            <p>A modern web application built with React and Node.js</p>
+              <p> Made a fully fucntional demo website for a Cafe.</p>
 
-            <div class="project-tags">
+              <div class="project-tags">
 
-              <span class="tag">React</span>
+                <span class="tag"><a id="learn" href="https://b29cafedemo.vercel.app/">Learn More</a></span>
 
-              <span class="tag">Node.js</span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="project-card" data-aos="fade-up">
-
-          <img src="project2.jpg" alt="Project 2" />
-
-          <div class="project-info">
-
-            <h3>Project 2</h3>
-
-            <p>An e-commerce platform with payment integration</p>
-
-            <div class="project-tags">
-
-              <span class="tag">JavaScript</span>
-
-              <span class="tag">Payment API</span>
+              </div>
 
             </div>
 
@@ -1330,21 +1797,95 @@
 
         </div>
 
-        <div class="project-card" data-aos="fade-up">
+        <div data-aos="flip-right">
 
-          <img src="project3.jpg" alt="Project 3" />
+          <div class="project-card">
 
-          <div class="project-info">
+            <img src="project2.jpg" alt="Project 2" />
 
-            <h3>Project 3</h3>
+            <div class="project-info">
 
-            <p>A real-time chat application</p>
+              <h3>ChatB</h3>
 
-            <div class="project-tags">
+              <p>Artificial Intelligent chatbot using NLP and machine learning.</p>
 
-              <span class="tag">Socket.io</span>
+              <div class="project-tags">
 
-              <span class="tag">Express</span>
+                <span class="tag"><a id="learn" href="https://bitto29.github.io/chatb">Learn More</a></span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div data-aos="flip-left">
+
+          <div class="project-card">
+
+            <img src="project3.jpg" alt="Project 3" />
+
+            <div class="project-info">
+
+              <h3>ChatGPT - Clone</h3>
+
+              <p>This is a clone of the first version of the well-known chat bot website, Chat GPT.</p>
+
+              <div class="project-tags">
+
+                <span class="tag"><a id="learn" href="https://bitto29.github.io/chatgpt-clone">Learn More</a></span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div data-aos="flip-right">
+
+          <div class="project-card">
+
+            <img src="project1.JPG" alt="Project 1" />
+
+            <div class="project-info">
+
+              <h3>Advanced QR code Generator</h3>
+
+              <p>Generate and customize any QR code very easily.</p>
+
+              <div class="project-tags">
+
+                <span class="tag"><a id="learn" href="https://bitto29.github.io/qrcode-generator">Learn More</a></span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div data-aos="flip-up">
+
+          <div class="project-card">
+
+            <img src="project5.jpg" alt="Project 5" />
+
+            <div class="project-info">
+
+              <h3>Rock Paper scissors Game</h3>
+
+              <p>This is an online rock paper scissors game.</p>
+
+              <div class="project-tags">
+
+                <span class="tag"><a id="learn" href="https://bitto29.github.io/rock-paper-scissors-game/">Learn More</a></span>
+
+              </div>
 
             </div>
 
@@ -1354,50 +1895,32 @@
 
       </div>
 
-      <p data-aos="fade-up"><a href="https://github.com/Bitto29" class="view-all-projects">View All Projects →</a></p>
-
     </div>
 
   </section>
 
+
+
   <!-- Contact Section -->
 
   <section id="contact" class="contact">
-
     <div class="container">
-
       <h2 data-aos="fade-up">Get In Touch</h2>
-
       <form id="contact-form" data-aos="fade-up">
-
         <div class="form-group">
-
           <input type="text" name="from_name" id="name" placeholder="Your Name" required />
-
         </div>
-
         <div class="form-group">
-
           <input type="email" name="from_email" id="email" placeholder="Your Email" required />
-
         </div>
-
         <div class="form-group">
-
           <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
-
         </div>
-
         <button type="submit" id="submit-btn" class="cta-btn">Send Message</button>
-
         <!-- Inline status area (no popup/alerts) -->
-
         <div id="form-status" class="form-status" style="display: none;"></div>
-
       </form>
-
     </div>
-
   </section>
 
 
@@ -1414,7 +1937,7 @@
       <a href="https://instagram.com/basit.iqbal.bitto" title="Basit Iqbal Bitto" target="_blank"><i class="fab fa-instagram"></i></a>
 
       <a href="https://wa.me/bitto29" title="WhatsApp" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-
+      
       <a href="https://www.linkedin.com/in/bitto29" title="Basit Iqbal Bitto" target="_blank"><i class="fab fa-linkedin"></i></a>
 
       <a href="https://github.com/Bitto29" title="Bitto29" target="_blank"><i class="fab fa-github"></i></a>
@@ -1451,86 +1974,306 @@ function showStatusMessage(message, type = 'success') {
   statusDiv.classList.remove('fade-out');
   statusDiv.style.display = 'block';
   statusDiv.textContent = message;
-  statusDiv.className = 'form-status ' + type;
-
+  statusDiv.className = `form-status ${type}`;
+  
   statusTimeout = setTimeout(() => {
     statusDiv.classList.add('fade-out');
     setTimeout(() => {
-      statusDiv.style.display = 'none';
-    }, 300);
-  }, 5000);
+      if (statusDiv.classList.contains('fade-out')) {
+        statusDiv.style.display = 'none';
+        statusDiv.classList.remove('fade-out');
+      }
+    }, 400);
+  }, 3800);
 }
 
-contactForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+function resetButtonToDefault() {
+  if (sentTimeout) {
+    clearTimeout(sentTimeout);
+    sentTimeout = null;
+  }
+  submitBtn.textContent = "Send Message";
+  submitBtn.disabled = false;
+}
 
-  // Disable button and change text
+contactForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  // Clear any pending timeouts
+  if (statusTimeout) clearTimeout(statusTimeout);
+  if (sentTimeout) {
+    clearTimeout(sentTimeout);
+    sentTimeout = null;
+  }
+  statusDiv.style.display = 'none';
+  statusDiv.classList.remove('fade-out');
+  
+  submitBtn.textContent = "Sending...";
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Sending...';
-
-  try {
-    const response = await emailjs.sendForm(
-      'service_fzoxvvh', // Replace with your Service ID
-      'template_k5z16o9', // Replace with your Template ID
-      contactForm
-    );
-
-    showStatusMessage('✓ Message sent successfully!', 'success');
-    
-    // Change button to "Sent" state
-    if (sentTimeout) clearTimeout(sentTimeout);
-    submitBtn.textContent = 'Sent ✓';
-    submitBtn.style.backgroundColor = '#00d572';
-
-    // Reset form
-    contactForm.reset();
-
-    // Reset button after 3 seconds
-    sentTimeout = setTimeout(() => {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send Message';
-      submitBtn.style.backgroundColor = '';
-    }, 3000);
-
-  } catch (error) {
-    console.error('Error sending email:', error);
-    showStatusMessage('✗ Failed to send message. Please try again.', 'error');
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Send Message';
+  
+  const nameValue = document.querySelector('input[name="from_name"]').value.trim();
+  const emailValue = document.querySelector('input[name="from_email"]').value.trim();
+  const messageValue = document.querySelector('textarea[name="message"]').value.trim();
+  
+  if (!nameValue || !emailValue || !messageValue) {
+    showStatusMessage("❌ Please fill in all fields before sending.", "error");
+    resetButtonToDefault();
+    return;
   }
-});
-
-// Hamburger menu toggle
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
-});
-
-// Close menu when a link is clicked
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('active');
-  });
-});
-
-// Hire Me Button functionality
-const hireMeBtn = document.getElementById('hire-me-btn');
-const hirePlatforms = document.getElementById('hire-platforms');
-
-hireMeBtn.addEventListener('click', () => {
-  hireMeBtn.classList.toggle('active');
-  hirePlatforms.classList.toggle('show');
-});
-
-// Close platforms when clicking outside
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('#hire-me-btn') && !e.target.closest('#hire-platforms')) {
-    hirePlatforms.classList.remove('show');
-    hireMeBtn.classList.remove('active');
+  
+  if (!emailValue.includes('@') || !emailValue.includes('.')) {
+    showStatusMessage("📧 Please enter a valid email address.", "error");
+    resetButtonToDefault();
+    return;
   }
-});
+  
+  const serviceID = 'service_hn230tk';
+  const templateID = 'template_2j2xutl';
+  
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      // showStatusMessage("✓ Message sent successfully! I'll get back to you soon.", "success");
+      contactForm.reset();
+      
+      // Set button to "Sent" and keep disabled
+      submitBtn.textContent = "Sent";
+      submitBtn.disabled = true;
+      
+      // After 3 seconds, revert to default
+      sentTimeout = setTimeout(() => {
+        resetButtonToDefault();
+      }, 3000);
+    })
+    .catch((err) => {
+      console.error("EmailJS Error Details:", err);
+      let errorMsg = "⚠️ Failed to send message. ";
+      if (err.text) errorMsg += err.text;
+      else if (err.message) errorMsg += err.message;
+      else errorMsg += "Please check your connection or try again later.";
+      showStatusMessage(errorMsg, "error");
+      resetButtonToDefault();
+    });
+});</script>
+
+
+  <!-- Your Existing Scripts -->
+
+  <script>
+
+    // Smooth scrolling for navigation links
+
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+
+      anchor.addEventListener("click", function(e) {
+
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+
+          behavior: "smooth",
+
+        });
+
+      });
+
+    });
+
+    // Floating shapes animation
+
+    const shapes = document.querySelectorAll(".floating-shapes div");
+
+    shapes.forEach((shape, index) => {
+
+      shape.style.animation = `float ${20 + index * 2}s infinite`;
+
+    });
+
+    // Mobile Menu Toggle
+
+    const hamburger = document.querySelector(".hamburger");
+
+    const navLinks = document.querySelector(".nav-links");
+
+    hamburger.addEventListener("click", () => {
+
+      navLinks.classList.toggle("active");
+
+    });
+
+    // Close menu when clicking outside
+
+    document.addEventListener("click", (e) => {
+
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+
+        navLinks.classList.remove("active");
+
+      }
+
+    });
+
+    // Close menu after clicking a link
+
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+
+      link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+      });
+
+    });
+
+    // ===== ENHANCED BRANCH ANIMATION =====
+
+    const hireMeBtn = document.getElementById('hireMeBtn');
+
+    const platformsContainer = document.querySelector('.hire-platforms');
+
+    let isAnimating = false;
+
+    hireMeBtn.addEventListener('click', (e) => {
+
+      e.stopPropagation();
+
+      // Prevent rapid clicks during animation
+
+      if (isAnimating) return;
+
+      isAnimating = true;
+
+      // Toggle platform visibility
+
+      const isShowing = !platformsContainer.classList.contains('show');
+
+      platformsContainer.classList.toggle('show', isShowing);
+
+      // Update button text
+
+      hireMeBtn.textContent = isShowing ? 'Hide Platforms' : 'Hire Me';
+
+      // Reset animation lock after transition
+
+      setTimeout(() => {
+
+        isAnimating = false;
+
+      }, 700);
+
+    });
+
+    // Close platforms when clicking outside
+
+    document.addEventListener('click', (e) => {
+
+      if (platformsContainer.classList.contains('show') &&
+
+        !platformsContainer.contains(e.target) &&
+
+        e.target !== hireMeBtn) {
+
+        platformsContainer.classList.remove('show');
+
+        hireMeBtn.textContent = 'Hire Me';
+
+      }
+
+    });
+
+    // Prevent closing when clicking inside platforms
+
+    platformsContainer.addEventListener('click', (e) => {
+
+      e.stopPropagation();
+
+    });
+
+  </script>
+
+
+
+  <!-- AOS Library JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+
+    AOS.init({
+
+      duration: 1000,
+
+      once: true,
+
+    });
+
+  </script>
+
+
+
+  <!-- Chatbase Script -->
+
+  <script>
+
+    (function() {
+
+      if (!window.chatbase || window.chatbase("getState") !== "initialized") {
+
+        window.chatbase = (...arguments) => {
+
+          if (!window.chatbase.q) {
+
+            window.chatbase.q = [];
+
+          }
+
+          window.chatbase.q.push(arguments);
+
+        };
+
+        window.chatbase = new Proxy(window.chatbase, {
+
+          get(target, prop) {
+
+            if (prop === "q") {
+
+              return target.q;
+
+            }
+
+            return (...args) => target(prop, ...args);
+
+          },
+
+        });
+
+      }
+
+      const onLoad = function() {
+
+        const script = document.createElement("script");
+
+        script.src = "https://www.chatbase.co/embed.min.js";
+
+        script.id = "5hSyhEFGKExTKNbgJ1EXA";
+
+        script.domain = "www.chatbase.co";
+
+        document.body.appendChild(script);
+
+      };
+
+      if (document.readyState === "complete") {
+
+        onLoad();
+
+      } else {
+
+        window.addEventListener("load", onLoad);
+
+      }
+
+    })();
+
   </script>
 
 </body>
